@@ -129,6 +129,8 @@ margin-top:15px;
 <a href="#about">Tentang</a>
 <a href="#project">Project</a>
 <a href="#contact">Kontak</a>
+<a href="#catatan">Catatan</a>
+<a href="#belajar">Belajar</a>
 </nav>
 </header>
 
@@ -198,7 +200,47 @@ target="_blank">
 </a>
 
 </section>
+<section class="section" id="catatan">
 
+<h2>📝 Catatan Online</h2>
+
+<div class="card">
+
+<textarea id="catatanSaya"
+placeholder="Tulis catatan di sini..."
+style="width:100%;height:150px;padding:10px;border-radius:10px;">
+</textarea>
+
+<br><br>
+
+<button onclick="simpanCatatan()">
+Simpan Catatan
+</button>
+
+</div>
+
+</section>
+<section class="section" id="belajar">
+
+<h2>📚 Pusat Belajar</h2>
+
+<div class="card">
+<h3>📐 Matematika</h3>
+<p>Luas Persegi = sisi × sisi</p>
+<p>Luas Lingkaran = π × r²</p>
+</div>
+
+<div class="card">
+<h3>📜 Sejarah</h3>
+<p>Proklamasi Indonesia: 17 Agustus 1945.</p>
+</div>
+
+<div class="card">
+<h3>🇮🇩 PKN</h3>
+<p>Pancasila adalah dasar negara Indonesia.</p>
+</div>
+
+</section>
 <footer>
 <p>© 2026 My Web Ferdi Adillah</p>
 </footer>
@@ -218,7 +260,32 @@ sekarang.toLocaleTimeString("id-ID");
 setInterval(updateJam,1000);
 
 updateJam();
+function simpanCatatan(){
 
+let isi =
+document.getElementById("catatanSaya").value;
+
+localStorage.setItem(
+"catatanWebFerdi",
+isi
+);
+
+alert("Catatan tersimpan!");
+}
+
+window.addEventListener("load", () => {
+
+let data =
+localStorage.getItem("catatanWebFerdi");
+
+if(data){
+
+document.getElementById("catatanSaya").value =
+data;
+
+}
+
+});
 </script>
 
 </body>
