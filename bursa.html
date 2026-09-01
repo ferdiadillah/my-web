@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bursa Efek v1.0</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#0f172a;
+color:white;
+margin:0;
+padding:20px;
+}
+
+header{
+text-align:center;
+padding:20px;
+}
+
+.card{
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+margin:15px 0;
+}
+
+input{
+width:100%;
+padding:10px;
+margin:10px 0;
+border:none;
+border-radius:8px;
+}
+
+button{
+padding:10px 20px;
+border:none;
+border-radius:8px;
+background:#22c55e;
+color:white;
+cursor:pointer;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+}
+
+th,td{
+padding:10px;
+border-bottom:1px solid #334155;
+text-align:left;
+}
+
+.profit{
+color:#22c55e;
+}
+
+.loss{
+color:#ef4444;
+}
+
+a{
+color:#60a5fa;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Bursa Efek v1.0</h1>
+<p>Simulasi Trading Saham</p>
+<a href="index.html">← Kembali ke Beranda</a>
+</header>
+
+<div class="card">
+<h2>Saldo Virtual</h2>
+<h1 id="saldo">Rp100.000.000</h1>
+</div>
+
+<div class="card">
+<h2>Daftar Saham</h2>
+
+<table>
+<tr>
+<th>Kode</th>
+<th>Harga</th>
+<th>Aksi</th>
+</tr>
+
+<tr>
+<td>BBCA</td>
+<td id="bbca">9500</td>
+<td><button onclick="beli('BBCA')">Beli</button></td>
+</tr>
+
+<tr>
+<td>TLKM</td>
+<td id="tlkm">4200</td>
+<td><button onclick="beli('TLKM')">Beli</button></td>
+</tr>
+
+<tr>
+<td>BBRI</td>
+<td id="bbri">5300</td>
+<td><button onclick="beli('BBRI')">Beli</button></td>
+</tr>
+
+</table>
+</div>
+
+<div class="card">
+<h2>Portofolio</h2>
+<ul id="portofolio"></ul>
+</div>
+
+<script>
+
+let saldo = 100000000;
+let portofolio = [];
+
+function formatRupiah(x){
+return "Rp" + x.toLocaleString("id-ID");
+}
+
+function updateSaldo(){
+document.getElementById("saldo").innerHTML =
+formatRupiah(saldo);
+}
+
+function beli(kode){
+
+let harga;
+
+if(kode==="BBCA") harga=9500;
+if(kode==="TLKM") harga=4200;
+if(kode==="BBRI") harga=5300;
+
+if(saldo >= harga){
+
+saldo -= harga;
+
+portofolio.push(kode);
+
+updateSaldo();
+
+document.getElementById("portofolio").innerHTML +=
+"<li>"+kode+" - "+formatRupiah(harga)+"</li>";
+
+}else{
+alert("Saldo tidak cukup!");
+}
+
+}
+
+updateSaldo();
+
+</script>
+
+</body>
+</html>
